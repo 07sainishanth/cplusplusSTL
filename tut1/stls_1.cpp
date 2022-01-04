@@ -2,6 +2,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
+#include <map>
+//#include <bits/stdc++.h>
+//#include "/Users/sainishanthvaka/stdc++.h"
 #include <algorithm>
 //#include <stdafx.h>
 
@@ -68,9 +72,76 @@ void vectorDemo(){
     cout << endl;
 }
 
+void setDemo(){
+    set<int> S;
+    S.insert(1);
+    S.insert(2);
+    S.insert(-1);
+    
+    set<int>::iterator it = S.find(-1);
+    if(it == S.end()){
+        cout << "Not Present!!" <<endl;
+    }
+    else{
+        cout << "Present " << *it << endl;
+    }
+    
+    set<int>::iterator it_;
+    for(it_ = S.begin(); it_ != S.end(); it_++){
+        cout << *it_ << " ";
+    }
+    cout << endl;
+    
+    set<int>::iterator it2 = S.upper_bound(-1);
+    set<int>::iterator it3 = S.lower_bound(0);
+    cout << *it2 << " " << *it3 << endl;
+    S.erase(2); //erasing an element
+    set<int>::iterator it4 = S.upper_bound(1);
+    if(it4 == S.end()){
+        cout << "Doesn't exist" << endl;
+    }
+    
+}
+
+void mapDemo(){
+    map<int, int> A;
+    A[2] = 21;
+    A[3] = 32;
+    A[7] = 17;
+    
+    map<char, int> cnt;
+    string xas = "Sai Nishanth Vaka";
+    int N = xas.length();
+    for (int i = 0; i < N; i++) {
+        cnt[xas[i]]++;
+    }
+    cout << cnt['a'] << " " << cnt['V'] << endl;
+    
+    A.erase(3); // Erasing am element
+    
+    for (map<int, int>::iterator itr = A.find(2); itr != A.end(); itr++) {
+           // finding an element
+            cout << itr->first << '\t' << itr->second << '\n';
+        
+    }
+}
+
+void usageSTL(){
+    set< pair <int, int> > S;
+    
+//    S.insert({ 3 , 5 });
+//    S.insert({10, 20});
+//    S.insert({31, 299});
+//    S.insert({300, 400});
+    
+}
+
 int main(){
     cout << "Hii\n";
 //    vectorDemo();
+//    setDemo();
+//    mapDemo();
+    usageSTL();
     
     return 0;
 }
