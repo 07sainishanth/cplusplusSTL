@@ -352,12 +352,15 @@ void dequeDemo(){
 
 void sortDemo(){
     vector<int> vec;
-    vec.push_back(1);
+    vec.push_back(18);
     vec.push_back(0);
-    vec.push_back(2);
+    vec.push_back(12);
     vec.push_back(3);
     vec.push_back(4);
-    vec.push_back(5);
+    vec.push_back(51);
+    vec.push_back(51);
+    vec.push_back(-51);
+    vec.push_back(-151);
     print_vec(vec);
     sort(vec.begin(), vec.end(), greater<int>());
 //    sort(std::execution::par, vec.begin(), vec.end(), greater<int>());
@@ -375,7 +378,16 @@ void sortDemo(){
     int diff = distance(vec.begin()+2, it);
     cout << endl << diff << endl;
     
-    // kth largest element
+    // nth largest element
+    nth_element(vec.begin(), vec.begin() + vec.size()/2 , vec.end());
+    cout << "The median is : " << vec[vec.size()/2] <<endl;
+    
+    nth_element(vec.begin(), vec.begin() + 1 , vec.end(), greater<int>());
+    cout << "The largest element is : " << vec[0] <<endl;
+    
+    // partial sort
+    partial_sort(vec.begin()+1, vec.begin() + 4 , vec.end());
+    print_vec(vec);
 }
 
 int main(){
