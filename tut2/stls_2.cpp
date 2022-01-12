@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_set>
 #include <set>
 #include <map>
 //#include <bits/stdc++.h>
@@ -14,7 +15,12 @@
 
 
 #include <map>
+#include <unordered_map>
 // Internally uses binary tree , AVL/red black tree, (self-balance)
+
+#include <queue>
+
+#include <stack>
 
 #include <functional>
 /*
@@ -191,6 +197,115 @@ void multimapDemo(){
 //    cout << mmap1.contains("Sai") << endl;
 }
 
+void unorderedMapDemo(){
+    // data stored using hashing & bucets where as map stores data using
+    // red black tree.
+    // Stored data in buckets
+    // search, removal, insertion occurs in average c-nstant-time complexity;
+    // allows dublicate {key:value} pairs
+    unordered_multimap<int, string> umm;
+    unordered_multimap<string, int> umm_;
+    umm.insert(make_pair(17, "Sai"));
+//    umm[17] = "SaiNishanth";
+    umm_.insert(make_pair("Sai", 17));
+//    cout << umm[17] << " : " << umm_["Sai"] << endl;
+}
+
+void setDemo(){
+    set<int> set_;
+    set_.insert(1);
+    set_.insert(2);
+    set_.insert(1);
+    set<int>::iterator it;
+    for (it = set_.begin(); it != set_.end(); it++)
+    {
+        std::cout << *it   // string (key)
+        << " ,";
+    }
+    cout << endl;
+      
+}
+
+void multisetDemo(){
+    // Uses red black tree
+    // Allows duplicate values
+    // stores data in ordered format.
+    
+    // Multiset needs opertors inside classes for it to accepts objects.
+    multiset<int> multiset_;
+    multiset_.insert(12);
+    multiset_.insert(23);
+    multiset_.insert(34);
+}
+
+void unordered_setDemo(){
+    unordered_set<int> uset;
+    uset.insert(12);
+    uset.insert(32);
+    uset.insert(42);
+}
+
+void unorderedMultiSetDemo(){
+    // Using hashing to store data
+    // average constant time to search, store and remove data
+    // map uses red black tree so logarthmic time
+    unordered_multiset<int> uset;
+    uset.insert(12);
+    uset.insert(32);
+    uset.insert(42);
+}
+
+void queue_Demo(){
+    queue<int> que;
+    que.push(12);
+    que.push(23);
+    que.push(32);
+    
+    while(!que.empty()){
+        cout << que.front() << " : ";
+        que.pop();
+    }
+    cout << endl;
+}
+
+void priorityQueueDemo(){
+    priority_queue<int> pq;
+    pq.push(12);
+    pq.push(-12);
+    pq.push(123);
+    pq.push(132);
+    pq.push(-212);
+    
+    while(!pq.empty()){
+        cout << pq.top() << " : ";
+        pq.pop();
+    }
+    cout << endl;
+    
+}
+
+void stackDemo(){
+    
+    // All operations in constant time : push, pop, size, empty
+    // Container adapter can use specified adapter : like vecor, map, set, multi set e.t.c.
+    stack<int> stk;
+    stk.push(12);
+    stk.push(-12);
+    stk.push(123);
+    stk.push(132);
+    stk.push(-212);
+    
+    while(!stk.empty()){
+        cout << stk.top() << " : ";
+        stk.pop();
+    }
+    cout << endl;
+}
+
+void copyDeom(){
+    vector<int>
+}
+
 int main(){
     cout << "Hii->\n";
 //    arrayDemo();
@@ -201,6 +316,14 @@ int main(){
 //    emplace_();
 //    mapDemo();
 //    multimapDemo();
+//    unorderedMapDemo();
+//    setDemo();
+//    multisetDemo();
+//    unordered_setDemo();
+//    unorderedMultiSetDemo();
+//    queue_Demo();
+//    priorityQueueDemo();
+    stackDemo();
     return 0;
 }
 
