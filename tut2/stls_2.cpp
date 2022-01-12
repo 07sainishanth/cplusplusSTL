@@ -19,10 +19,12 @@
 // Internally uses binary tree , AVL/red black tree, (self-balance)
 
 #include <queue>
-
+#include <deque>
 #include <stack>
 
 #include <functional>
+#include <numeric>
+#include <execution>
 /*
  Youtube tutorial
  link : https://www.youtube.com/watch?v=ZqfoG5w36Qw
@@ -302,8 +304,78 @@ void stackDemo(){
     cout << endl;
 }
 
+void print_vec(vector<int>& vec){
+    copy(vec.begin(), vec.end(), ostream_iterator<int>(cout, "  "));
+    cout << endl;
+}
+
 void copyDeom(){
-    vector<int>
+    vector<int> vec_src(10, 6);
+    iota(vec_src.begin(), vec_src.end(), 0);
+    vector<int> vec_des(vec_src.size());
+    copy(vec_src.begin()+1, vec_src.end()-1, vec_des.begin());
+    print_vec(vec_des);
+    
+    vector<int> vec_des2;
+    copy(vec_src.begin(), vec_src.end(), back_inserter(vec_des2));
+    print_vec(vec_des2);
+    
+    // copy_n
+    vector<int> vec_des3;
+    copy_n(vec_src.begin()+3, 4, back_inserter(vec_des3));
+    print_vec(vec_des3);
+    
+    // copy_backward
+    vector<int> vec_des4(15);
+    copy_backward(vec_src.begin(), vec_src.end(), vec_des4.end());
+    print_vec(vec_des4);
+
+}
+
+void dequeDemo(){
+    //Deque
+    // Index container
+    // random access O(1)
+    // insertion & removal from both sides O(1)
+    deque<int> dqu;
+    dqu.push_front(1);
+    dqu.push_front(0);
+    dqu.push_back(2);
+    dqu.push_back(3);
+    dqu.push_back(4);
+    dqu.push_back(5);
+    
+    dqu.pop_front();
+    dqu.pop_back();
+    cout << dqu[0] << " : " <<  dqu[-1]<< endl;
+}
+
+void sortDemo(){
+    vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(0);
+    vec.push_back(2);
+    vec.push_back(3);
+    vec.push_back(4);
+    vec.push_back(5);
+    print_vec(vec);
+    sort(vec.begin(), vec.end(), greater<int>());
+//    sort(std::execution::par, vec.begin(), vec.end(), greater<int>());
+//    sort(vec.begin(), vec.end(), [](int a, int b){ return a < b;});
+    
+    // is_sorted
+    print_vec(vec);
+    cout << is_sorted(vec.begin(), vec.end(), greater<int>()) << endl;
+    cout << is_sorted(vec.begin(), vec.end()) << endl;
+    vec.push_back(2);
+    
+    // sorted unitl
+//    vector<int>::iterator it  =  is_sorted_until(vec.begin(), vec.end());
+    vector<int>::iterator it  =  is_sorted_until(vec.begin(), vec.end(), greater<int>());
+    int diff = distance(vec.begin()+2, it);
+    cout << endl << diff << endl;
+    
+    // kth largest element
 }
 
 int main(){
@@ -323,7 +395,10 @@ int main(){
 //    unorderedMultiSetDemo();
 //    queue_Demo();
 //    priorityQueueDemo();
-    stackDemo();
+//    stackDemo();
+//    copyDeom();
+//    dequeDemo();
+    sortDemo();
     return 0;
 }
 
